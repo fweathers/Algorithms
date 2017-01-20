@@ -66,6 +66,8 @@ func getMaxProfit2(stockPricesYesterday: [Int]) -> Int {
 }
 
 getMaxProfit2(stockPricesYesterday: [11, 10, 9, 8, 7])
+// Not quite there
+
 
 /***********************************************************************************************/
 
