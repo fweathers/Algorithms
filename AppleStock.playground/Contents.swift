@@ -66,3 +66,35 @@ func getMaxProfit2(stockPricesYesterday: [Int]) -> Int {
 }
 
 getMaxProfit2(stockPricesYesterday: [11, 10, 9, 8, 7])
+
+/***********************************************************************************************/
+
+// More effective solution, satisfies everything, except if array < 2
+
+func getMaxProfit3(stockPricesYesterday: [Int]) -> Int {
+
+    // update minPrice and maxProfit
+    var minPrice = stockPricesYesterday[0]
+    var maxProfit = stockPricesYesterday[1] - stockPricesYesterday[0]
+    
+    // can't sell at first index so start at second index
+    for i in 1..<stockPricesYesterday.count {
+        
+        var currentPrice = stockPricesYesterday[i]
+        
+        // see what profit would be if we bought at the minPrice and sold at the currentPrice
+        var potentialProfit = currentPrice - minPrice
+        
+        // update maxProfit
+        maxProfit = ([maxProfit, potentialProfit]).max()!
+        
+        //update minPrice so it's always the lowest
+        minPrice = ([minPrice, currentPrice]).min()!
+    }
+    
+    return maxProfit
+}
+
+getMaxProfit3(stockPricesYesterday: [11, 10, 9, 8, 7])
+getMaxProfit3(stockPricesYesterday: [1, 2, 3, 4])
+getMaxProfit3(stockPricesYesterday: [10, 7, 5, 8, 11, 9])
